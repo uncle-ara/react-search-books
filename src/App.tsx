@@ -1,10 +1,19 @@
 import React from "react";
-import "./App.module.scss";
+import SearchArea from "./components/SearchArea/SearchArea";
+import Content from "./components/Content/Content";
+
+import styles from "./App.module.scss";
 
 const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">Hello world</header>
+    <div className={styles.base}>
+      <header className={styles.header}>
+        <SearchArea />
+      </header>
+
+      <main className={styles.content}>
+        <Content />
+      </main>
     </div>
   );
 };

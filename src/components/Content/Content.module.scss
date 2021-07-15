@@ -1,0 +1,32 @@
+.count {
+  margin: 10px auto;
+  padding-left: 10px;
+}
+
+.content {
+  width: 100%;
+}
+
+.wrapper {
+  margin: 15px auto;
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(4, 1fr);
+
+  @media screen and (max-width: 1130px) {
+    grid-template-columns: repeat(3, 1fr);
+    justify-items: center;
+  }
+
+  @media screen and (max-width: 980px) {
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+  }
+
+  @media screen and (max-width: 550px) {
+    display: block;
+    max-width: 280px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
