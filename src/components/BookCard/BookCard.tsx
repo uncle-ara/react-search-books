@@ -4,9 +4,9 @@ import styles from "./BookCard.module.scss";
 
 export type Props = {
   id?: number;
-  cat: string;
+  cat: string[];
   title: string;
-  author: string;
+  author: string[];
 };
 
 const BookCard = ({ id, cat, title, author }: Props) => {

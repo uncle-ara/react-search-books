@@ -1,65 +1,24 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { State } from "../../store";
 import BookCard from "../BookCard/BookCard";
 
 import styles from "./Content.module.scss";
 
-const mock = [
-  {
-    id: 1,
-    cat: "Computers",
-    title: "Серфинг по интренету",
-    author: "Авсенин Андрей",
-  },
-  {
-    id: 2,
-    cat: "Biograthi",
-    title: "Сантехника для чайников",
-    author: "Anton",
-  },
-  {
-    id: 3,
-    cat: "Art",
-    title: "Как собрать конструктор",
-    author: "Авсенин Андрей",
-  },
-  {
-    id: 4,
-    cat: "Art",
-    title: "Node.js Разработка серверных веб-приложений на JavaScript",
-    author: "Николай Романов",
-  },
-  {
-    id: 5,
-    cat: "Art",
-    title: "Node.js Разработка серверных веб-приложений на JavaScript",
-    author: "Николай Романов",
-  },
-  {
-    id: 6,
-    cat: "Art",
-    title: "Node.js Разработка серверных веб-приложений на JavaScript",
-    author: "Николай Романов",
-  },
-  {
-    id: 7,
-    cat: "Art",
-    title: "Node.js Разработка серверных веб-приложений на JavaScript",
-    author: "Николай Романов",
-  },
-];
-
 const Content = () => {
+  const books = useSelector((state: State) => state.books.storage);
+  const totalItems = useSelector((state: State) => state.books.totalItems);
   return (
     <div className={styles.content}>
-      <h4 className={styles.count}>Count</h4>
+      <span className={styles.count}>Count {totalItems}</span>
       <div className={styles.wrapper}>
-        {mock.map((item) => {
+        {Object.values(books).map(({ id, volumeInfo }) => {
           return (
             <BookCard
-              key={item.id}
-              cat={item.cat}
-              title={item.title}
-              author={item.author}
+              key={id}
+              cat={volumeInfo.categories}
+              title={volumeInfo.title}
+              author={volumeInfo.authors}
             />
           );
         })}

@@ -5,16 +5,22 @@ import Sort from "./Sort/Sort";
 
 import "antd/dist/antd.css";
 import styles from "./SearchArea.module.scss";
+import { useDispatch } from "react-redux";
+import { requestBooks } from "../../actions/books";
 
 const SearchArea = () => {
-  const onSearch = (value: any) => console.log(value);
+  const dispatch = useDispatch();
+  // const onSearch = (value: any) => console.log(value);
+  const handleClick = () => {
+    dispatch(requestBooks());
+  };
 
   return (
     <form className={styles.container}>
       <Input.Search
         className={styles.search}
         placeholder="Search"
-        onSearch={onSearch}
+        onSearch={handleClick}
         size="large"
         enterButton
       />

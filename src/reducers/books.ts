@@ -1,22 +1,27 @@
-import { Action, Reducer } from "redux";
-
-import { SET_BOOKS } from "../actions/books";
+import { Reducer } from "redux";
+import { Actions, SET_BOOKS, SET_TOTAL_ITEMS } from "../actions/books";
+import { pack } from "../helpers";
+import { Book } from "../types";
 
 export type BooksState = {
-  storage: {};
+  storage: Record<string, Book>;
+  totalItems: number;
 };
 
-const initialState: BooksState = {
+export const initialState: BooksState = {
   storage: {},
+  totalItems: 0,
 };
 
-const reduceBooks: Reducer<BooksState, Action> = (
+const reduceBooks: Reducer<BooksState, Actions> = (
   state = initialState,
-  action: Action
+  action: Actions
 ) => {
   switch (action.type) {
     case SET_BOOKS:
-      return { ...state };
+      return { ...state, storage: pack(action.payload.books, "id") };
+    case SET_TOTAL_ITEMS:
+      return { ...state, totalItems: action.payload };
     default:
       return state;
   }
